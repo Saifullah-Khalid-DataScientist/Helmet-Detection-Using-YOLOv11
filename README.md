@@ -1,80 +1,80 @@
-Helmet Detection Using YOLOv11
-Project Overview
+🪖 Helmet Detection Using YOLOv11
+📌 Project Overview
 
-This project focuses on detecting whether a motorcycle rider is wearing a helmet or not using a deep learning object detection model. The system is designed to support traffic safety enforcement and accident prevention by automatically identifying helmet usage from images.
+This project focuses on automatically detecting whether a motorcycle rider is wearing a helmet or not using a deep learning–based object detection model.
+The system is designed to support traffic safety enforcement, accident prevention, and smart surveillance systems.
 
-The project is built using the YOLOv11 object detection framework and trained on a labeled helmet detection dataset.
+The model is trained using YOLOv11, which provides fast and accurate real-time object detection.
 
-Objective
+🎯 Objective
 
-The main objective of this project is to automatically detect helmet usage in images of motorcycle riders. The system classifies riders into two categories:
+The main objective of this project is to:
+
+Detect helmet and no-helmet cases from traffic images
+
+Help authorities enforce helmet safety rules
+
+Reduce road accidents through automated monitoring
+
+📂 Dataset Description
+
+The dataset contains images of motorcycle riders captured in various traffic conditions.
+
+Classes:
 
 Helmet
 
 No Helmet
 
-Dataset Description
+Dataset Features:
 
-The dataset contains images of motorcycle riders captured under different traffic and environmental conditions.
+Different camera angles
 
-Each image is annotated using bounding boxes in YOLO format.
+Daytime and nighttime images
 
-Classes included:
+Multiple traffic environments
 
-Helmet
+YOLO format annotations
 
-No Helmet
+🛠️ Methodology
 
-The dataset is split into:
+Collected motorcycle rider images
 
-Training set
-
-Validation set
-
-Test set
-
-Methodology
-
-Collected and prepared helmet and no-helmet images
-
-Annotated images using bounding boxes
+Annotated helmet and no-helmet regions using bounding boxes
 
 Converted annotations into YOLO format
 
-Used transfer learning with YOLOv11 pretrained weights
+Trained YOLOv11 using transfer learning
 
-Trained the model on the helmet detection dataset
+Fine-tuned the model to improve detection accuracy
 
-Evaluated model performance on validation data
+Tested the model on unseen images
 
-Performed inference on new images to verify results
+🚀 Model & Training
 
-Model Used
-
-YOLOv11 Nano (yolo11n.pt)
-
-Chosen for fast inference and good accuracy
-
-Pretrained on COCO dataset and fine-tuned for helmet detection
-
-Training Details
-
-Image size: 640 × 640
-
-Batch size: 16
-
-Epochs: 25
+Model Used: YOLOv11 Nano (yolo11n.pt)
 
 Framework: Ultralytics YOLO
 
-Hardware: NVIDIA Tesla T4 (Google Colab)
+Image Size: 640 × 640
 
-Results
+Training Epochs: Configurable
 
-The trained model successfully detects helmets with high confidence.
+Hardware: GPU (Tesla T4 on Google Colab)
 
-Bounding boxes are accurately drawn around helmets.
+📊 Results
 
-Inference speed is fast, making the model suitable for real-time applications.
+The trained model successfully:
 
-Prediction results are automatically saved for review.
+Detects helmets with high confidence
+
+Draws accurate bounding boxes
+
+Works efficiently on real-world images
+
+Example output includes bounding boxes with confidence scores displayed on detected helmets.
+
+
+model = YOLO("best.pt")
+model.predict(
+    source="test_image.jp
