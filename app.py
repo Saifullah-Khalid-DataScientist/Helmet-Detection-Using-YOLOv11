@@ -1,5 +1,15 @@
 import streamlit as st
-from ultralytics import YOLO
+import sys
+import subprocess
+
+# Install ultralytics if not available
+try:
+    from ultralytics import YOLO
+except ImportError:
+    st.info("Installing required packages... Please wait.")
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "ultralytics==8.0.196"])
+    from ultralytics import YOLO
+
 from PIL import Image
 import numpy as np
 import cv2
@@ -75,8 +85,6 @@ st.markdown('<p class="subheader-text">AI-Powered Safety Compliance Detection us
 
 # Sidebar
 with st.sidebar:
-    st.image("https://raw.githubusercontent.com/ultralytics/assets/main/logo/Ultralytics_Logotype_Original.svg", width=200)
-    st.markdown("---")
     st.markdown("### ⚙️ Configuration")
     confidence_threshold = st.slider("Confidence Threshold", 0.0, 1.0, 0.5, 0.05)
     st.markdown("---")
