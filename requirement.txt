@@ -1,4 +1,12 @@
 streamlit
+torch
+torchvision
 pillow
 numpy
 opencv-python-headless
+PyYAML
+tqdm
+matplotlib
+seaborn
+pandas
+scipy
