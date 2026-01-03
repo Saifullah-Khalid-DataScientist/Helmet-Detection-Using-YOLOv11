@@ -1,13 +1,2 @@
 libgl1-mesa-glx
 libglib2.0-0
-libsm6
-libxext6
-libxrender-dev
-libgomp1
-```
-
-**4. Use my LATEST `app.py`** (the one with fallback methods I sent earlier)
-
-**5. Most Important - Create `runtime.txt`:**
-```
-python-3.11.9
