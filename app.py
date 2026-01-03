@@ -126,7 +126,7 @@ def detect_objects(image, model, model_type, conf_threshold):
             class_id = int(box.cls[0])
             class_name = class_names[class_id]
             confidence = float(box.conf[0])
-            detection_data.append({'class': class_name, 'conf': confidence})
+            detection_data.append({'class': class_name, 'conf': confidence, 'class_id': class_id})
             
     else:  # torch hub
         model.conf = conf_threshold
@@ -139,9 +139,9 @@ def detect_objects(image, model, model_type, conf_threshold):
         detection_data = []
         df = results.pandas().xyxy[0]
         for _, row in df.iterrows():
-            detection_data.append({'class': row['name'], 'conf': row['confidence']})
+            detection_data.append({'class': row['name'], 'conf': row['confidence'], 'class_id': row['class']})
     
-    return annotated_img_rgb, detection_data
+    return annotated_img_rgb, detection_data, class_names if model_type == 'ultralytics' else {}
 
 # Main content
 col1, col2 = st.columns([1, 1])
@@ -165,10 +165,14 @@ with col2:
             # Run detection
             with st.spinner('🔍 Analyzing image...'):
                 try:
-                    annotated_img, detections = detect_objects(image, model, model_type, confidence_threshold)
+                    annotated_img, detections, class_names_dict = detect_objects(image, model, model_type, confidence_threshold)
                     
                     # Display result
                     st.image(annotated_img, caption='Detection Result', use_column_width=True)
+                    
+                    # Show class mapping
+                    if class_names_dict:
+                        st.info(f"📝 Model Classes: {class_names_dict}")
                     
                     # Detection statistics
                     num_detections = len(detections)
